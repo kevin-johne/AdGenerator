@@ -1,13 +1,11 @@
 <div class="advert slides">
-    <div class="product" ng-repeat="product in products">
-        <input type="radio" name="radio-btn" id="img-{{$index}}" ng-checked="{{$first}}" />
-        <div class="slide-container">
-            <div class="slide">
-                <img class="product__img" ng-src="{{product.img}}"/>
-                <div class="product__info">
-                    <h1 class="product__title">{{product.name}}</h1>
-                    <a class="product__btn" href="{{product.link}}" target="_parent">BUY NOW</a>
-                </div>
+    <input type="radio" name="radio-btn" id="img-{{$index}}" ng-checked="{{$first}}" ng-repeat-start="product in products" />
+    <div class="product slide-container">
+        <div class="slide">
+            <img class="product__img" ng-src="{{product.img}}"/>
+            <div class="product__info">
+                <h1 class="product__title">{{product.name}}</h1>
+                <a class="product__btn" href="{{product.link}}" target="_parent">BUY NOW</a>
             </div>
         </div>
         <div class="nav">
@@ -18,8 +16,8 @@
         </div>
     </div>
 
-    <li class="nav-dots">
-        <label ng-repeat="product in products" for="img-{{$index}}" class="nav-dot" id="img-dot-{{$index}}" ></label>
+    <li class="nav-dots" ng-repeat-end ng-if="$last">
+        <label ng-repeat="product2 in products" for="img-{{$index}}" class="nav-dot" id="img-dot-{{$index}}" ></label>
     </li>
 </div>
 

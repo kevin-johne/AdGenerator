@@ -30,10 +30,6 @@ body {
     width: 300px;
 }
 
-.product {
-    height: 100%;
-}
-
 .product__img {
     height: 150px;
     width: 226px;
@@ -47,6 +43,7 @@ body {
     height: 70px;
     background-color: #191D3A;
     display: inline-block;
+    margin-bottom: 10px;
 }
 
 .product__title {
@@ -62,6 +59,10 @@ body {
     color: #43d1c0;
     padding: 5px 20px;
     border: 2px solid #43d1c0;
+}
+
+.product__btn:hover {
+    border-color: #e7637a;
 }
 
 /* SLIDER */
@@ -91,38 +92,31 @@ body {
     position: absolute;
 
     transform: scale(1);
-
     transition: all .7s ease-in-out;
 }
 
 .nav label {
-    width: 200px;
-    height: 100%;
+    width: 36px;
     display: none;
     position: absolute;
-
-    opacity: 0;
     z-index: 9;
     cursor: pointer;
-
-    transition: opacity .2s;
-
-    color: #FFF;
-    font-size: 156pt;
-    text-align: center;
-    line-height: 380px;
-    font-family: "Varela Round", sans-serif;
-    background-color: rgba(255, 255, 255, .3);
-    text-shadow: 0px 0px 15px rgb(119, 119, 119);
+    color: #e7637a;
+    font-size: 38px;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
-.slide:hover + .nav label { opacity: 0.5; }
+.slide:hover + .nav label,
+.nav label:hover {
+    color: #43d1c0;
+}
 
-.nav label:hover { opacity: 1; }
+.nav .next {
+    right: 0;
+}
 
-.nav .next { right: 0; }
-
-input:checked + .slide-container  .slide {
+input:checked + .slide-container .slide {
     opacity: 1;
 
     transform: scale(1);
@@ -130,11 +124,13 @@ input:checked + .slide-container  .slide {
     transition: opacity 1s ease-in-out;
 }
 
-input:checked + .slide-container .nav label { display: block; }
+input:checked + .slide-container .nav label {
+    display: block;
+}
 
 .nav-dots {
     width: 100%;
-    bottom: 9px;
+    top: 145px;
     height: 11px;
     display: block;
     position: absolute;
@@ -149,19 +145,16 @@ input:checked + .slide-container .nav label { display: block; }
     position: relative;
     border-radius: 100%;
     display: inline-block;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: #e7637a;
 }
 
 .nav-dots .nav-dot:hover {
     cursor: pointer;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color:  #43d1c0;
 }
 
+input#img-0:checked ~ .nav-dots label#img-dot-0,
 input#img-1:checked ~ .nav-dots label#img-dot-1,
-input#img-2:checked ~ .nav-dots label#img-dot-2,
-input#img-3:checked ~ .nav-dots label#img-dot-3,
-input#img-4:checked ~ .nav-dots label#img-dot-4,
-input#img-5:checked ~ .nav-dots label#img-dot-5,
-input#img-6:checked ~ .nav-dots label#img-dot-6 {
-    background: rgba(0, 0, 0, 0.8);
+input#img-2:checked ~ .nav-dots label#img-dot-2 {
+    background-color: #43d1c0;
 }
