@@ -1,0 +1,12 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100" height="100" viewbox="0 0 100 100">
+    <g>
+        <circle class="circle" cx="50" cy="50" r="48.54"/>
+        <g id="square" transform="rotate(45 50 50)" stroke="black" stroke-width="8">
+            <line class="letter thick" x1="31.459" y1="20" x2="31.459" y2="80"/>
+            <line class="letter" x1="31.459" y1="80" x2="54.379" y2="80"/>
+            <line class="letter thick" x1="68.542" y1="80" x2="68.542" y2="20"/>
+            <line class="letter" x1="68.542" y1="20" x2="45.622" y2="20"/>
+        </g>
+        <line class="letter" x1="14" y1="35" x2="14" y2="65" stroke="black" stroke-width="8"/>
+    </g>
+</svg>

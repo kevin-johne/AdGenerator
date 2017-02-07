@@ -1,0 +1,63 @@
+/*<div class="advert">
+    <div class="product" ng-repeat="product in products">
+        <img class="product__img" src="{{product.img}}"/>
+        <div class="product__info">
+            <h1 class="product__title">{{product.name}}</h1>
+            <a class="product__btn" href="{{product.link}}">BUY NOW</a>
+        </div>
+    </div>
+</div>
+*/
+
+* {
+    box-sizing: border-box;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: white;
+    font-family: sans-serif;
+}
+
+
+.advert {
+    text-align: center;
+}
+
+.product {
+    height: 300px;
+}
+
+.product__img {
+    height: 150px;
+    width: 226px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.product__info {
+    padding: 15px;
+    width: 226px;
+    height: 70px;
+    background-color: #191D3A;
+    display: inline-block;
+}
+
+.product__title {
+    font-size: 12px;
+    color: #e7637a;
+    margin: 0 0 5px;
+}
+
+.product__btn {
+    text-decoration: none;
+    font-size: 10px;
+    display: inline-block;
+    color: #43d1c0;
+    padding: 5px 20px;
+    border: 2px solid #43d1c0;
+}

@@ -1,0 +1,25 @@
+{
+  "name": "ad-generator",
+  "version": "1.0.0",
+  "description": "dynamic ad generator with preview and html code to embed in you own website",
+  "license": "MIT",
+  "author": {
+    "name": "Kevin Johne",
+    "email": "k.johne90@web.de",
+    "url": "kevin-johne.github.io"
+  },
+  "main": "index.html",
+  "engines": {
+    "node": ">= 4.2.1"
+  },
+  "dependencies": {
+    "angular": "1.6.1"
+  },
+  "devDependencies": {
+    "gulp": "3.9.1",
+    "gulp-connect": "5.0.0"
+  },
+  "scripts": {
+    "test": "mocha --reporter spec"
+  }
+}
