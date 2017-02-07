@@ -43,8 +43,8 @@
                             </div>
 
                             <div class="form__input-group">
-                                <label for="color">Text Color</label>
-                                <input type="text" id="color" ng-module="appCtrl.style.btn.color"
+                                <label for="btn__color">Text Color</label>
+                                <input type="text" id="btn__color" ng-module="appCtrl.style.btn.color"
                                 placeholder="rgba(255,255,255,1)">
                             </div>
                         </fieldset>
@@ -52,7 +52,8 @@
                         <fieldset>
                             <legend>Template</legend>
                             <div class="form__input-group">
-                                <select ng-model="appCtrl.template">
+                                <label for="layout">Text Color</label>
+                                <select ng-model="appCtrl.template" id="layout">
                                     <option value="/templates/adItem.html" >Single Product</option>
                                     <option value="/templates/adSlider.html">Advert Slider</option>
                                 </select>

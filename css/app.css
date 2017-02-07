@@ -100,7 +100,8 @@ textarea:focus {
     padding-top: 8px;
 }
 
-.form__input-group input {
+.form__input-group input,
+.form__input-group select {
     display: inline-block;
     font-size: 20px;
     height: 40px;
