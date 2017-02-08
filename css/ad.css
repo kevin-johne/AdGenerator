@@ -12,7 +12,6 @@ body {
     font-family: sans-serif;
 }
 
-
 .advert {
     text-align: center;
     height: 250px;
@@ -50,10 +49,6 @@ body {
     border: 2px solid #43d1c0;
 }
 
-.product__btn:hover {
-    border-color: #e7637a;
-}
-
 /* SLIDER */
 
 .slides {
@@ -67,9 +62,13 @@ body {
     user-select: none;
 }
 
-.slides input { display: none; }
+.slides input {
+    display: none;
+}
 
-.slide-container { display: block; }
+.slide-container {
+    display: block;
+}
 
 .slide {
     top: 0;
@@ -139,7 +138,7 @@ input:checked + .slide-container .nav label {
 
 .nav-dots .nav-dot:hover {
     cursor: pointer;
-    background-color:  #43d1c0;
+    background-color: #43d1c0;
 }
 
 input#img-0:checked ~ .nav-dots label#img-dot-0,

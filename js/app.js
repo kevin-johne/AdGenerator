@@ -7,7 +7,7 @@ app.controller('appController', function ($http, $scope) {
     };
 });
 
-app.directive('advertScreen', function ($http, $compile, $q, $templateRequest) {
+app.directive('advertScreen', function ($http, $compile, $q, $log, $templateRequest) {
     return {
         restrict: 'E',
         require: 'advertScreen',
@@ -42,6 +42,10 @@ app.directive('advertScreen', function ($http, $compile, $q, $templateRequest) {
                 return $http.get('css/ad.css').then(function (res) {
                     style.innerHTML = res.data;
                     html.querySelector('head').appendChild(style);
+                }).catch(function(e) {
+                    $log.warn( 'style couldnt be fetched' );
+                    $log.info( 'Maybe anti ad is running, please deactivate');
+                    $log.warn( e );
                 });
             };
         },
