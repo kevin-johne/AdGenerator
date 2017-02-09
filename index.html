@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <link href="css/app.css" rel="stylesheet">
+    <link href="favicon.ico" rel="icon" type="image/x-icon" />
     <title>Ad Creator</title>
 </head>
 <body class="body">
     <div class="page" ng-app="app" ng-controller="appController as appCtrl">
         <header class="page__header">
             <h1 class="header__headline">
-                Ad<br>
+                Ad <img src="img/icons/logo.svg" class="header__logo"><br>
                 Creator
             </h1>
-            <img src="" class="header__logo">
         </header>
         <div class="page__content">
 
@@ -54,7 +54,7 @@
                             <div class="form__input-group">
                                 <label for="layout">Select Template</label>
                                 <select ng-model="appCtrl.template" id="layout">
-                                    <option value="/templates/adItem.html" >Single Product</option>
+                                    <option value="/templates/adItem.html">Single Product</option>
                                     <option value="/templates/adSlider.html">Advert Slider</option>
                                 </select>
                             </div>
