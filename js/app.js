@@ -220,9 +220,13 @@ app.directive('advert', function( $timeout ) {
     }
 });
 
+/**
+ * directive for a spinner
+ * <spinner></spinner>
+ */
 app.directive('spinner', function () {
     return {
-        restrict: 'EA',
+        restrict: 'E',
         replace: true,
         transclude: true,
         template: '<div class="spinner" ng-transclude=""></div>',
@@ -237,7 +241,6 @@ app.directive('spinner', function () {
         },
         link: function (scope, element ) {
             scope.$watch('loading', function( state ) {
-                console.log( 'changed');
                 if( state ) {
                     element.addClass( 'loading' );
                 } else {
@@ -248,6 +251,10 @@ app.directive('spinner', function () {
     }
 });
 
+/**
+ * Utility Functions
+ * @constructor
+ */
 Util = function() {
     Util.prototype.chunkString = function(str, len) {
         var _size = Math.ceil(str.length/len),
