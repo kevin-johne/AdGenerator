@@ -24,13 +24,13 @@
                             <legend>Product Info Box</legend>
                             <div class="form__input-group">
                                 <label for="info__bgColor">Background Color</label>
-                                <input type="text" id="info__bgColor" ng-module="appCtrl.style.info.bgColor"
+                                <input type="text" id="info__bgColor" ng-model="appCtrl.style['.product__info'].backgroundColor"
                                 placeholder="#333333">
                             </div>
 
                             <div class="form__input-group">
                                 <label for="info__color">Text Color</label>
-                                <input type="text" id="info__color" ng-module="appCtrl.style.info.color"
+                                <input type="text" id="info__color" ng-model="appCtrl.style['.product__title'].color"
                                 placeholder="pink">
                             </div>
                         </fieldset>
@@ -38,13 +38,13 @@
                             <legend>Link Button</legend>
                             <div class="form__input-group">
                                 <label for="btn__bgColor">Background Color</label>
-                                <input type="text" id="btn__bgColor" ng-module="appCtrl.style.btn.bgColor"
-                                placeholder="hsla(0,0,0,1)">
+                                <input type="text" id="btn__bgColor" ng-model="appCtrl.style['.product__btn'].backgroundColor"
+                                placeholder="hsla(170, 50%, 45%, 1)">
                             </div>
 
                             <div class="form__input-group">
                                 <label for="btn__color">Text Color</label>
-                                <input type="text" id="btn__color" ng-module="appCtrl.style.btn.color"
+                                <input type="text" id="btn__color" ng-model="appCtrl.style['.product__btn'].color"
                                 placeholder="rgba(255,255,255,1)">
                             </div>
                         </fieldset>
@@ -69,7 +69,7 @@
             </div>
 
             <div class="content__row">
-                <advert-screen resource="/api/products.json" template="{{appCtrl.template}}">
+                <advert-screen resource="/api/products.json" template="{{appCtrl.template}}" ng-style="appCtrl.style">
                     <section class="preview">
                         <h2>Preview</h2>
                         <advert-view view-preview></advert-view>

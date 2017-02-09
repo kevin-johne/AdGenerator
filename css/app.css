@@ -70,7 +70,7 @@ legend {
 
 textarea {
     width: 100%;
-    min-height: 400px;
+    min-height: 230px;
     resize: vertical;
     border: 0;
     border-bottom: 2px solid transparent;
