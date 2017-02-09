@@ -4,61 +4,42 @@ require('./test-helper');
 // Loads the module we want to test
 require('../js/app');
 
-describe('Generating HTML', function() {
-    var $httpBackend,
-        $rootScope,
-        $scope,
-        element,
-        $compile,
-        advertScreenController,
-        authRequestHandler;
+describe('Rendering HTML', function() {
 
     var products = '/api/products.json';
 
     beforeEach(ngModule('app'));
 
-    beforeEach(inject(function($injector) {
-        $httpBackend = $injector.get('$httpBackend');
-        $rootScope = $injector.get('$rootScope');
-        $compile = $injector.get('$compile');
-        $scope = $rootScope.$new();
+    describe('Render Advert HTML View', function() {
 
-        authRequestHandler = $httpBackend.when('GET', products)
-            .respond(
-                {
-                    products: [
-                        {
-                            img: 'basedata:image/jpeg;base64,',
-                            name: 'test',
-                            url: 'http://www.test.com'
-                        },{
-                            img: 'basedata:image/jpeg;base64,',
-                            name: 'test2',
-                            url: 'http://www.test2.com'
-                        }
-                    ]
-                });
-    }));
+        it('should have the TEXTAREA tag', inject(function($rootScope, $compile) {
+            var scope = $rootScope.$new();
 
-    afterEach(function() {
-        $httpBackend.verifyNoOutstandingExpectation();
-        $httpBackend.verifyNoOutstandingRequest();
+            var compiled = $compile('<advert-view view-html></advert-view>')(scope);
+
+            assert.equal(compiled.prop('tagName'), 'TEXTAREA');
+        }));
+
+        it('should render HTML as text', inject(function ($rootScope, $compile) {
+            var scope = $rootScope.$new();
+            scope.codeSnipped = document.createElement('div');
+            var compiled = $compile('<advert-view view-html></advert-view>')(scope);
+
+            scope.$digest();
+
+            assert.equal(compiled.text(), '<div></div>');
+        }));
     });
 
-    it('has resource', function() {
-        $httpBackend.expectGET(products);
-        element = $compile('<advert-screen resource="'+products+'" template="/templates/adItem.html"></advert-screen>')($scope);
-        console.log( element[0]);
-        assert.equal( element.attr('resource', products ));
-    });
+    describe('Render Advert Preview View', function() {
 
-    it('has products', function() {
-        $httpBackend.expectGET(products);
-        element = $compile('<advert-screen resource="'+products+'" template="/templates/adItem.html"></advert-screen>')($scope);
-        advertScreenController = element.controller('advertScreen');
-        $scope.$digest();
-        assert.equal( $scope.products.length, 2 );
-        $httpBackend.flush();
-    });
+        it('should have the IFRAME tag', inject(function($rootScope, $compile) {
+            var scope = $rootScope.$new();
 
+            var compiled = $compile('<advert-view view-preview></advert-view>')(scope);
+
+            assert.equal(compiled.prop('tagName'), 'IFRAME');
+        }));
+        
+    });
 });
