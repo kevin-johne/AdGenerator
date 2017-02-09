@@ -31,3 +31,6 @@ If you don't like the preselected colors and other styles of the advert, type in
 
 Run mocha tests
 `npm test`
+
+## Notes
+this application has no build tools, because of the simplification and to keep it simple I avoided using scss and other preprocessor
