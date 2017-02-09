@@ -137,35 +137,34 @@ app.directive('viewHtml', function( $timeout ) {
         link: function( scope, element, attributes, spinnerController ) {
             var chunks;
             var index;
+            var interval;
             var utils = new Util();
 
             scope.$watch( 'codeSnipped', function( newArray ){
                 if( !scope.codeSnipped || !scope.codeSnipped.outerHTML ) {
                     return;
                 }
+
                 element.html( '' );
                 spinnerController.setLoader( true );
 
-                chunks = utils.chunkString( scope.codeSnipped.outerHTML, 1000 );
+                chunks = utils.chunkString( scope.codeSnipped.outerHTML, 50000 );
                 index = 0;
 
-                function timeout() {
-                    setTimeout( function() {
-                        if( index < chunks.length ) {
-                            element[0].innerText = element.text() + chunks[index];
-                            index++;
-                            timeout();
-                        } else {
-                            console.log( 'false');
-                            spinnerController.setLoader( false );
-                            scope.$apply();
-                        }
-                    }, 1000/60 ); // todo this chunk solution is not optimal better is a stream
-                    // 1000sec/60 = 60fps
-                }
-
-                timeout();
+                pushChunk();
+                interval = setInterval( pushChunk, 1000 );
             });
+
+            function pushChunk() {
+                if (index >= chunks.length) {
+                    spinnerController.setLoader(false);
+                    clearInterval(interval);
+                    scope.$apply();
+                } else {
+                    element[0].innerText = element.text() + chunks[index];
+                    index++;
+                }
+            }
         }
     }
 });
