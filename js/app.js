@@ -88,7 +88,7 @@ app.directive('advertScreen', function ($http, $compile, $q, $log, $templateRequ
 app.directive('advertView', function () {
     return {
         restrict: 'E',
-        link: function (scope, element, attribute) {
+        link: function (scope, element, attribute ) {
             scope.$on( 'generateAdvertDone', function( event, html ) {
                 scope.codeSnipped = html;
             });
@@ -105,7 +105,7 @@ app.directive('viewPreview', function ( $timeout ) {
         restrict: 'A',
         template: '<iframe scrolling="no"></iframe>',
         replace: true,
-        link: function (scope, element) {
+        link: function (scope, element, attribute, spinnerController) {
             var iFrame = element[0].contentWindow;
             scope.$watch( 'codeSnipped', function( newArray ){
                 // need timeout otherwise get pre compiled html
@@ -123,13 +123,50 @@ app.directive('viewPreview', function ( $timeout ) {
 
 /**
  * specific directive to display HTML code
+ * printing a long string can block the ui to interact
+ * to improve this performance the string is split down,
+ * with a timeout it gets rendered chunk by chunk
  * needs scope.codeSnipped {Node}
  */
-app.directive('viewHtml', function() {
+app.directive('viewHtml', function( $timeout ) {
     return {
         restrict: 'A',
-        template: '<textarea readonly>{{ codeSnipped.outerHTML }}</textarea>',
-        replace: true
+        template: '<textarea readonly spellcheck="false"></textarea>',
+        replace: true,
+        require: '^spinner',
+        link: function( scope, element, attributes, spinnerController ) {
+            var chunks;
+            var index;
+            var utils = new Util();
+
+            scope.$watch( 'codeSnipped', function( newArray ){
+                if( !scope.codeSnipped || !scope.codeSnipped.outerHTML ) {
+                    return;
+                }
+                element.html( '' );
+                spinnerController.setLoader( true );
+
+                chunks = utils.chunkString( scope.codeSnipped.outerHTML, 1000 );
+                index = 0;
+
+                function timeout() {
+                    setTimeout( function() {
+                        if( index < chunks.length ) {
+                            element[0].innerText = element.text() + chunks[index];
+                            index++;
+                            timeout();
+                        } else {
+                            console.log( 'false');
+                            spinnerController.setLoader( false );
+                            scope.$apply();
+                        }
+                    }, 1000/60 ); // todo this chunk solution is not optimal better is a stream
+                    // 1000sec/60 = 60fps
+                }
+
+                timeout();
+            });
+        }
     }
 });
 
@@ -183,3 +220,47 @@ app.directive('advert', function( $timeout ) {
         }
     }
 });
+
+app.directive('spinner', function () {
+    return {
+        restrict: 'EA',
+        replace: true,
+        transclude: true,
+        template: '<div class="spinner" ng-transclude=""></div>',
+        controller: function ($scope) {
+            this.setLoader = function( state ) {
+                $scope.loading = state;
+            };
+
+            this.getLoader = function() {
+                return $scope.loading;
+            };
+        },
+        link: function (scope, element ) {
+            scope.$watch('loading', function( state ) {
+                console.log( 'changed');
+                if( state ) {
+                    element.addClass( 'loading' );
+                } else {
+                    element.removeClass( 'loading' );
+                }
+            });
+        }
+    }
+});
+
+Util = function() {
+    Util.prototype.chunkString = function(str, len) {
+        var _size = Math.ceil(str.length/len),
+            _ret  = new Array(_size),
+            _offset
+            ;
+
+        for (var _i=0; _i<_size; _i++) {
+            _offset = _i * len;
+            _ret[_i] = str.substring(_offset, _offset + len);
+        }
+
+        return _ret;
+    };
+};

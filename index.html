@@ -86,12 +86,14 @@
                 <advert-screen resource="/api/products.json" template="{{appCtrl.template}}" ng-style="appCtrl.style">
                     <section class="preview">
                         <h2>Preview</h2>
-                        <advert-view view-preview></advert-view>
+                            <advert-view view-preview></advert-view>
                     </section>
 
                     <section class="html">
                         <h2>HTML</h2>
-                        <advert-view view-html></advert-view>
+                        <spinner>
+                            <advert-view view-html></advert-view>
+                        </spinner>
                     </section>
 
                 </advert-screen>
