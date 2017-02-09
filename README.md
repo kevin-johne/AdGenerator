@@ -26,3 +26,8 @@ The Generator comes with 2 different layouts for ads. One layout for only one pr
 Choose your layout over the select field.
 
 If you don't like the preselected colors and other styles of the advert, type in your own in the input fields.
+
+## Testing
+
+Run mocha tests
+`npm test`
