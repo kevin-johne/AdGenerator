@@ -1,1 +1,1 @@
-imatest.error
+console.log('test', error.i');
